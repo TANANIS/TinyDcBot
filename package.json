@@ -1,0 +1,28 @@
+{
+    "name":  "tinydcbot",
+    "version":  "0.1.0",
+    "private":  true,
+    "type":  "module",
+    "description":  "Private Discord bot backed by a project-local Ollama model.",
+    "scripts":  {
+                    "dev":  "node src/index.js",
+                    "start":  "node src/index.js",
+                    "dashboard":  "node src/dashboardServer.js",
+                    "check:storage":  "powershell -ExecutionPolicy Bypass -File scripts/check-storage.ps1",
+                    "doctor":  "powershell -ExecutionPolicy Bypass -File scripts/doctor.ps1",
+                    "env:init":  "powershell -ExecutionPolicy Bypass -File scripts/init-env.ps1",
+                    "deps:install":  "powershell -ExecutionPolicy Bypass -File scripts/install-deps.ps1",
+                    "bot:run":  "powershell -ExecutionPolicy Bypass -File scripts/run-bot.ps1",
+                    "ollama:start":  "powershell -ExecutionPolicy Bypass -File scripts/start-ollama.ps1",
+                    "ollama:pull":  "powershell -ExecutionPolicy Bypass -File scripts/pull-model.ps1",
+                    "ollama:test":  "powershell -ExecutionPolicy Bypass -File scripts/test-ollama.ps1",
+                    "stop:all":  "powershell -ExecutionPolicy Bypass -File scripts/stop-all.ps1"
+                },
+    "dependencies":  {
+                         "discord.js":  "^14.16.3",
+                         "dotenv":  "^16.4.7"
+                     },
+    "engines":  {
+                    "node":  "\u003e=20"
+                }
+}

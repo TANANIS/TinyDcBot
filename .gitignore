@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+node_modules/
+npm-debug.log*
+*.log
+.codex-remote-attachments/
+
+# Runtime data must stay local but should not be committed.
+# This excludes downloaded Node/Ollama binaries, model blobs, manifests, logs,
+# caches, and Discord conversation traces. Only placeholder .gitkeep files are
+# allowed below so the expected local folder shape is visible.
+runtime/**
+!runtime/
+!runtime/**/
+!runtime/**/.gitkeep
