@@ -109,7 +109,7 @@ export const config = {
   allowedChannelIds: readList("BOT_ALLOWED_CHANNEL_IDS"),
   triggerPrefixes: Array.from(readList("BOT_TRIGGER_PREFIXES")).length > 0
     ? Array.from(readList("BOT_TRIGGER_PREFIXES"))
-    : ["qwen", "qwen3", "tana", "tanaai", "ai"],
+    : ["qwen", "qwen3", "aina", "ai"],
   allowWebSearch: readBoolean("BOT_ALLOW_WEB_SEARCH", false),
   searchPrefix: process.env.BOT_SEARCH_PREFIX || "search",
   searchMaxResults: readInteger("BOT_SEARCH_MAX_RESULTS", 4, 1, 8),

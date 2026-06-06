@@ -5,6 +5,10 @@ $env:OLLAMA_MODELS = Join-Path $ProjectRoot "runtime\ollama\models"
 $AllowPathRuntime = $env:TINYDCBOT_ALLOW_PATH_RUNTIME -eq "true"
 
 & (Join-Path $PSScriptRoot "check-storage.ps1")
+& (Join-Path $PSScriptRoot "runtime-guard.ps1") -Action start-ollama -FailOnRisk
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
 
 $ProjectOllama = Join-Path $ProjectRoot "runtime\ollama\bin\ollama.exe"
 

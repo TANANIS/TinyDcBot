@@ -11,6 +11,10 @@ $TopP = if ($env:OLLAMA_TOP_P) { [double]$env:OLLAMA_TOP_P } else { 0.9 }
 $RepeatPenalty = if ($env:OLLAMA_REPEAT_PENALTY) { [double]$env:OLLAMA_REPEAT_PENALTY } else { 1.08 }
 
 & (Join-Path $PSScriptRoot "check-storage.ps1")
+& (Join-Path $PSScriptRoot "runtime-guard.ps1") -Action test-model -FailOnRisk
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
 
 $Body = @{
     model = $Model

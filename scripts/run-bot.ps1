@@ -29,6 +29,11 @@ if (-not $Node) {
     throw "node was not found at D:\TinyDcBot\runtime\node\node.exe. Project-local Node is required unless TINYDCBOT_ALLOW_PATH_RUNTIME=true is set intentionally."
 }
 
+& (Join-Path $PSScriptRoot "runtime-guard.ps1") -Action start-bot -FailOnRisk
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
+
 Push-Location $ProjectRoot
 try {
     & $Node.Source (Join-Path $ProjectRoot "src\index.js")

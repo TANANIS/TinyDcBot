@@ -20,6 +20,15 @@ function clip(value, max = 1800) {
   return text.length > max ? `${text.slice(0, max)}...[trimmed]` : text;
 }
 
+function safeMeta(value) {
+  if (!value || typeof value !== "object") return {};
+  try {
+    return JSON.parse(clip(JSON.stringify(value), 8000));
+  } catch {
+    return { error: "meta-serialization-failed" };
+  }
+}
+
 export function getConversationLogPath() {
   ensureLogRoot();
   return conversationLog;
@@ -39,11 +48,13 @@ export function logConversationEvent(event) {
     error: clip(event.error || ""),
     searched: Boolean(event.searched),
     memoryItems: Array.isArray(event.memoryItems) ? event.memoryItems.map((item) => ({
+      action: clip(item.action || "", 40),
       field: clip(item.field || "", 80),
       value: clip(item.value || "", 240),
-      confidence: clip(item.confidence || "", 40),
+      confidence: clip(item.confidence ?? "", 40),
+      reason: clip(item.reason || "", 240),
     })) : [],
-    meta: event.meta && typeof event.meta === "object" ? event.meta : {},
+    meta: safeMeta(event.meta),
   };
   fs.appendFileSync(conversationLog, `${JSON.stringify(safe)}\n`, "utf8");
 }

@@ -1,6 +1,8 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { buildOllamaOptions, config } from "./config.js";
+import { logModelPerformance } from "./performanceLog.js";
+import { assertRuntimeSafe } from "./runtimeGuard.js";
 
 const execFileAsync = promisify(execFile);
 
@@ -53,23 +55,74 @@ async function assertGpuBudget() {
     throw error;
   }
 }
-export async function chatOllama({ messages, numPredict = 512, signal, think = false }) {
+export async function chatOllama({ messages, numPredict = 512, signal, think = false, optionOverrides = {}, logType = "chat" }) {
+  await assertRuntimeSafe(logType === "decision" ? "autonomy-preview" : "chat");
   await assertGpuBudget();
   const basePayload = {
     model: config.ollamaModel,
     stream: false,
     think,
     messages,
-    options: buildOllamaOptions(numPredict),
+    options: buildOllamaOptions(numPredict, optionOverrides),
   };
+  const started = performance.now();
+  const promptChars = messages.reduce((sum, message) => sum + String(message?.content || "").length, 0);
+  const vramFreeBeforeMb = await freeVramMb();
 
   try {
-    return await postChat(basePayload, signal);
+    const data = await postChat(basePayload, signal);
+    logModelPerformance({
+      type: logType,
+      model: basePayload.model,
+      options: basePayload.options,
+      promptChars,
+      messageCount: messages.length,
+      wallSeconds: (performance.now() - started) / 1000,
+      vramFreeBeforeMb,
+      vramFreeAfterMb: await freeVramMb(),
+      promptEvalCount: data.prompt_eval_count,
+      promptEvalDurationNs: data.prompt_eval_duration,
+      evalCount: data.eval_count,
+      evalDurationNs: data.eval_duration,
+      responseChars: String(data?.message?.content || "").length,
+      doneReason: data.done_reason,
+    });
+    return data;
   } catch (error) {
     if (config.ollamaCpuFallback && config.ollamaNumGpu === null && isCudaOutOfMemory(`${error.body || ""}\n${error.message || ""}`)) {
       console.warn("Ollama CUDA OOM; CPU fallback is enabled, retrying once with num_gpu=0.");
-      return postChat({ ...basePayload, options: buildOllamaOptions(numPredict, { num_gpu: 0 }) }, signal);
+      const fallbackPayload = { ...basePayload, options: buildOllamaOptions(numPredict, { ...optionOverrides, num_gpu: 0 }) };
+      const data = await postChat(fallbackPayload, signal);
+      logModelPerformance({
+        type: logType,
+        model: fallbackPayload.model,
+        options: fallbackPayload.options,
+        promptChars,
+        messageCount: messages.length,
+        wallSeconds: (performance.now() - started) / 1000,
+        vramFreeBeforeMb,
+        vramFreeAfterMb: await freeVramMb(),
+        promptEvalCount: data.prompt_eval_count,
+        promptEvalDurationNs: data.prompt_eval_duration,
+        evalCount: data.eval_count,
+        evalDurationNs: data.eval_duration,
+        responseChars: String(data?.message?.content || "").length,
+        doneReason: data.done_reason,
+        fallback: "cpu",
+      });
+      return data;
     }
+    logModelPerformance({
+      type: "error",
+      model: basePayload.model,
+      options: basePayload.options,
+      promptChars,
+      messageCount: messages.length,
+      wallSeconds: (performance.now() - started) / 1000,
+      vramFreeBeforeMb,
+      vramFreeAfterMb: await freeVramMb(),
+      error: error?.message || String(error),
+    });
     throw error;
   }
 }

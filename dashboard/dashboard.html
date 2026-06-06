@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
@@ -6,12 +6,12 @@
   <title>TinyDcBot Dashboard</title>
   <style>
     :root{color-scheme:dark;--bg:#151713;--panel:#20251e;--panel2:#252b24;--line:#3a4438;--text:#f3f1e7;--muted:#b8bcae;--accent:#7cc36b;--warn:#e5b760;--danger:#e07063;--shadow:rgba(0,0,0,.28)}
-    *{box-sizing:border-box} body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif} button,input,select,textarea{font:inherit}
-    .shell{max-width:1220px;margin:0 auto;padding:28px 20px 40px} header{display:flex;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line)} h1{margin:0 0 6px;font-size:28px} h2{margin:0;font-size:16px} h3{margin:0 0 8px;font-size:14px;color:#d4d4c7}.subtitle{margin:0;color:var(--muted)}.badge{padding:6px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--panel)}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px} section{grid-column:span 6;border:1px solid var(--line);background:var(--panel);border-radius:8px;box-shadow:0 10px 30px var(--shadow);min-width:0}.wide{grid-column:1/-1}.third{grid-column:span 4}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}.content{padding:16px;display:grid;gap:12px}
-    .status{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:#171b16;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}.ok .dot{background:var(--accent)}.warn .dot{background:var(--warn)}.bad .dot{background:var(--danger)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif}button,input,select,textarea{font:inherit}
+    .shell{max-width:1220px;margin:0 auto;padding:28px 20px 40px}header{display:flex;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}h1{margin:0 0 6px;font-size:28px}h2{margin:0;font-size:16px}h3{margin:0 0 8px;font-size:14px;color:#d4d4c7}.subtitle{margin:0;color:var(--muted)}.badge{padding:6px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--panel)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}section{grid-column:span 6;border:1px solid var(--line);background:var(--panel);border-radius:8px;box-shadow:0 10px 30px var(--shadow);min-width:0}.wide{grid-column:1/-1}.third{grid-column:span 4}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}.content{padding:16px;display:grid;gap:12px}
+    .status{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:#171b16;font-size:13px;max-width:100%;overflow:hidden}.status span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:0 0 auto}.ok .dot{background:var(--accent)}.warn .dot{background:var(--warn)}.bad .dot{background:var(--danger)}
     button{min-height:38px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--text);cursor:pointer}button.primary{border-color:#6ea65f;background:#365731}button.danger{border-color:#9d4d45;background:#62302d}button:disabled{opacity:.5;cursor:not-allowed}
-    input,select,textarea{border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--text);padding:9px 10px}textarea{min-height:80px;resize:vertical}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.row{display:grid;grid-template-columns:1fr auto;gap:10px}.triple{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}pre{margin:0;overflow:auto;padding:12px;border:1px solid var(--line);border-radius:6px;background:#0f110e;color:#d7ddc9;white-space:pre-wrap;word-break:break-word;line-height:1.45}.box{height:240px}.small{height:150px}.path{font-size:13px;color:var(--muted);word-break:break-all}dl{display:grid;grid-template-columns:155px 1fr;gap:8px 12px;margin:0;color:var(--muted)}dt{color:#d4d4c7}dd{margin:0;word-break:break-word}.toast{position:fixed;right:18px;bottom:18px;max-width:min(460px,calc(100vw - 36px));padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#222820;opacity:0;transform:translateY(8px);transition:.16s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}
+    input,select,textarea{border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--text);padding:9px 10px;min-width:0}textarea{min-height:80px;resize:vertical}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.row{display:grid;grid-template-columns:1fr auto;gap:10px}.triple{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}pre{margin:0;overflow:auto;padding:12px;border:1px solid var(--line);border-radius:6px;background:#0f110e;color:#d7ddc9;white-space:pre-wrap;word-break:break-word;line-height:1.45}.box{height:240px}.small{height:150px}.path{font-size:13px;color:var(--muted);word-break:break-all}dl{display:grid;grid-template-columns:155px 1fr;gap:8px 12px;margin:0;color:var(--muted)}dt{color:#d4d4c7}dd{margin:0;word-break:break-word}.toast{position:fixed;right:18px;bottom:18px;max-width:min(460px,calc(100vw - 36px));padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#222820;opacity:0;transform:translateY(8px);transition:.16s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}
     @media(max-width:860px){header{display:block}.badge{display:inline-block;margin-top:12px}section,.third{grid-column:1/-1}.row,.triple{grid-template-columns:1fr}dl{grid-template-columns:1fr}}
   </style>
 </head>
@@ -22,9 +22,29 @@
     <section><div class="head"><h2>Ollama</h2><span id="ollamaStatus" class="status"><span class="dot"></span><span>checking</span></span></div><div class="content"><div class="controls"><button class="primary" data-action="start-ollama">Start Ollama</button><button class="danger" data-action="stop-ollama">Stop Ollama</button><button data-action="pull-model">Pull Model</button><button data-action="test-model">Test Model</button></div></div></section>
     <section><div class="head"><h2>Discord Bot</h2><span id="botStatus" class="status"><span class="dot"></span><span>checking</span></span></div><div class="content"><div class="controls"><button class="primary" data-action="start-bot">Start Bot</button><button class="danger" data-action="stop-bot">Stop Bot</button><button class="danger" data-action="stop-all">Stop All</button></div></div></section>
 
+    <section class="wide"><div class="head"><h2>Runtime Guard</h2><span id="guardStatus" class="status"><span class="dot"></span><span>checking</span></span></div><div class="content"><div class="controls"><button data-action="refresh-runtime-guard">Refresh Guard</button><button class="danger" data-action="clean-runtime-orphans">Clean Orphans</button><button class="primary" data-action="restart-runtime-ollama">Clean + Restart Ollama</button></div><div id="runtimeGuardPath" class="path"></div><pre id="runtimeGuardOutput" class="box"></pre></div></section>
+
     <section class="wide"><div class="head"><h2>Models</h2><span id="modelStatus" class="status"><span class="dot"></span><span>checking</span></span></div><div class="content"><div class="row"><select id="modelSelect"></select><button class="primary" data-action="switch-model">Switch Model</button></div><div class="controls"><button data-action="refresh-models">Refresh Models</button><button data-action="pull-model">Pull Current Model</button></div><pre id="modelOutput" class="small"></pre></div></section>
 
     <section class="wide"><div class="head"><h2>Environment</h2><span id="storageStatus" class="status"><span class="dot"></span><span>checking</span></span></div><div class="content"><dl id="envList"></dl></div></section>
+
+    <section class="wide"><div class="head"><h2>Performance</h2><div class="controls"><button data-action="refresh-performance">Refresh</button><button class="danger" data-action="clear-performance">Clear</button></div></div><div class="content"><div id="performancePath" class="path"></div><pre id="performanceOutput" class="box"></pre></div></section>
+
+    <section class="wide"><div class="head"><h2>Autonomy</h2><div class="controls"><button data-action="refresh-autonomy">Refresh</button><button class="primary" data-action="save-autonomy">Save</button></div></div><div class="content">
+      <div id="autonomyPath" class="path"></div>
+      <div class="triple"><select id="decisionMode"><option value="model">model decision</option><option value="hybrid">hybrid decision</option><option value="rules">rules only</option></select><select id="searchMode"><option value="aggressive">aggressive search</option><option value="conservative">conservative search</option><option value="manual">manual search</option></select><select id="memoryMode"><option value="high_confidence">high confidence memory</option><option value="candidate_only">candidate only</option><option value="manual">manual memory</option></select></div>
+      <div class="triple"><input id="searchConfidence" placeholder="search confidence 0.65" /><input id="memorySaveConfidence" placeholder="save confidence 0.86" /><input id="memoryCandidateConfidence" placeholder="candidate confidence 0.55" /></div>
+      <div class="triple"><select id="searchDisclosure"><option value="natural">natural sources</option><option value="always_sources">always sources</option><option value="dashboard_only">dashboard only</option></select><select id="memoryFeedback"><option value="dashboard">memory feedback dashboard</option><option value="light">light memory feedback</option><option value="explicit">explicit memory feedback</option></select><button data-action="preview-autonomy">Preview</button></div>
+      <textarea id="autonomyPreviewInput" placeholder="輸入一句話測試：欸幫我查一下 qwen3.5 4b 現在評價怎樣"></textarea>
+      <pre id="autonomyOutput" class="box"></pre>
+    </div></section>
+
+    <section class="wide"><div class="head"><h2>Character Bible</h2><div class="controls"><button data-action="refresh-character">Refresh</button><button class="primary" data-action="save-character">Save</button><button class="danger" data-action="reset-character">Reset</button></div></div><div class="content">
+      <div id="characterPath" class="path"></div>
+      <div class="row"><select id="characterIntensity"><option value="0">0 muted</option><option value="1">1 subtle</option><option value="2">2 character-forward</option><option value="3">3 simulation-heavy</option></select><button data-action="apply-character-intensity">Apply Intensity</button></div>
+      <pre id="characterOutput" class="box"></pre>
+      <textarea id="characterJson" class="box"></textarea>
+    </div></section>
 
     <section class="wide"><div class="head"><h2>Qwen Chat</h2><span class="status ok"><span class="dot"></span><span>local</span></span></div><div class="content"><div class="row"><textarea id="chatInput" placeholder="直接問 qwen3.5:4b"></textarea><button class="primary" data-action="send-chat">Send</button></div><label><input type="checkbox" id="chatSearch" /> 先做網路搜尋</label><pre id="chatHistory" class="box"></pre></div></section>
 
@@ -33,55 +53,333 @@
     <section class="third"><div class="head"><h2>Processes</h2></div><div class="content"><button data-action="refresh-processes">Refresh</button><pre id="processOutput" class="small"></pre></div></section>
 
     <section class="wide"><div class="head"><h2>Memory</h2><div class="controls"><button data-action="refresh-memory">Refresh</button><button class="primary" data-action="save-users">Save Users JSON</button></div></div><div class="content">
+      <h3>核心人格</h3><div id="personaPath" class="path"></div><textarea id="personaInput" class="box"></textarea><button class="primary" data-action="save-persona">Save Persona</button>
       <h3>手動長期記憶</h3><div id="manualPath" class="path"></div><pre id="manualOutput" class="small"></pre><div class="row"><textarea id="manualInput" placeholder="新增一條手動長期記憶"></textarea><button class="primary" data-action="add-manual-memory">Add</button></div><button class="danger" data-action="clear-manual-memory">Clear Manual Memory</button>
       <h3>結構化使用者記憶 JSON</h3><div id="autoPath" class="path"></div><textarea id="usersJson" class="box"></textarea><div class="triple"><input id="autoUserId" placeholder="Discord user ID，留空清全部" /><button class="danger" data-action="clear-auto-user">Clear User</button><button class="danger" data-action="clear-auto-all">Clear All</button></div>
       <h3>候選記憶</h3><div id="candidatePath" class="path"></div><pre id="candidateOutput" class="box"></pre><div class="triple"><input id="candidateId" placeholder="candidate id" /><button class="primary" data-action="approve-candidate">Approve</button><button class="danger" data-action="reject-candidate">Reject</button></div><button class="danger" data-action="clear-candidates">Clear Candidates</button>
     </div></section>
 
+    <section class="wide"><div class="head"><h2>Self Memory</h2><div class="controls"><button data-action="refresh-self-memory">Refresh</button><button class="danger" data-action="clear-self-memory">Clear All</button></div></div><div class="content"><div id="selfMemoryPath" class="path"></div><pre id="selfMemoryOutput" class="box"></pre><div class="controls"><button class="danger" data-action="clear-self-principles">Clear Principles</button><button class="danger" data-action="clear-self-voice">Clear Voice</button><button class="danger" data-action="clear-self-avoid">Clear Avoid</button></div></div></section>
+
     <section class="wide"><div class="head"><h2>Reminders</h2><button data-action="refresh-reminders">Refresh</button></div><div class="content"><div class="triple"><input id="reminderText" placeholder="提醒內容" /><input id="reminderTime" placeholder="tomorrow 09:00 / 10m / 2h / ISO" /><button class="primary" data-action="add-reminder">Add</button></div><pre id="reminderOutput" class="box"></pre><div class="triple"><input id="reminderId" placeholder="reminder id" /><button data-action="done-reminder">Done</button><button class="danger" data-action="clear-reminders">Clear All</button></div></div></section>
 
     <section class="wide"><div class="head"><h2>Context</h2><button data-action="refresh-context">Refresh</button></div><div class="content"><div id="contextPath" class="path"></div><pre id="contextOutput" class="box"></pre></div></section>
-
-
     <section class="wide"><div class="head"><h2>Conversation Monitor</h2><div class="controls"><button data-action="refresh-conversations">Refresh</button><button class="danger" data-action="clear-conversations">Clear</button></div></div><div class="content"><div id="conversationPath" class="path"></div><pre id="conversationOutput" class="box"></pre></div></section>
-
-    <section class="wide"><div class="head"><h2>Self Knowledge</h2><button data-action="refresh-self">Refresh</button></div><div class="content"><pre id="selfOutput" class="box"></pre></div></section>    <section class="wide"><div class="head"><h2>Logs</h2><div class="controls"><select id="logSelect"><option value="dashboard">Dashboard</option><option value="ollama-out">Ollama out</option><option value="ollama-err">Ollama err</option><option value="bot-out">Bot out</option><option value="bot-err">Bot err</option></select><button data-action="refresh-log">Refresh</button><button class="danger" data-action="clear-log">Clear Selected</button><button class="danger" data-action="clear-all-logs">Clear All</button></div></div><div class="content"><pre id="logOutput" class="box">Loading...</pre></div></section>
+    <section class="wide"><div class="head"><h2>Self Knowledge</h2><button data-action="refresh-self">Refresh</button></div><div class="content"><pre id="selfOutput" class="box"></pre></div></section>
+    <section class="wide"><div class="head"><h2>Logs</h2><div class="controls"><select id="logSelect"><option value="dashboard">Dashboard</option><option value="ollama-out">Ollama out</option><option value="ollama-err">Ollama err</option><option value="bot-out">Bot out</option><option value="bot-err">Bot err</option></select><button data-action="refresh-log">Refresh</button><button class="danger" data-action="clear-log">Clear Selected</button><button class="danger" data-action="clear-all-logs">Clear All</button></div></div><div class="content"><pre id="logOutput" class="box">Loading...</pre></div></section>
   </main>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 const $ = (id) => document.getElementById(id);
-const els = { ollama:$('ollamaStatus'), bot:$('botStatus'), storage:$('storageStatus'), model:$('modelStatus') };
-function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),3500)}
-function setStatus(el,state,text){el.classList.remove('ok','warn','bad');el.classList.add(state);el.lastElementChild.textContent=text}
-async function api(path, options={}){const r=await fetch(path,{headers:{'Content-Type':'application/json'},...options});const d=await r.json();if(!r.ok||d.ok===false)throw new Error(d.error||`HTTP ${r.status}`);return d}
-function disable(v){document.querySelectorAll('button').forEach(b=>b.disabled=v)}
-async function refreshStatus(){const s=await api('/api/status');setStatus(els.ollama,s.ollamaRunning?'ok':'warn',s.ollamaRunning?'running':'stopped');setStatus(els.bot,s.botRunning?'ok':'warn',s.botRunning?'running':'stopped');setStatus(els.storage,s.storageOk?'ok':'bad',s.storageOk?'isolated':'check failed');setStatus(els.model,s.hasModel?'ok':'warn',s.model);$('envList').innerHTML=[['Project root',s.projectRoot],['Model',s.model],['Tone',`${s.tone} ${s.toneDescription}`],['Token',s.token?.masked],['Process count',s.processCount],['Manual memory',s.memoryPath],['Auto memory',s.autoMemoryPath],['Candidates',s.candidatesPath],['Context',s.contextPath],['Reminders',s.remindersPath],['Capabilities',s.capabilitiesPath],['.env',s.hasEnv?'present':'missing'],['Model pulled',s.hasModel?'yes':'no']].map(([k,v])=>`<dt>${k}</dt><dd>${String(v||'missing')}</dd>`).join('');$('toneSelect').value=String(s.tone)}
-async function refreshModels(){const d=await api('/api/models');setStatus(els.model,d.models.some(m=>m.active)?'ok':'warn',d.current);$('modelSelect').innerHTML=d.models.map(m=>`<option value="${m.name}" ${m.active?'selected':''}>${m.active?'* ':''}${m.name}</option>`).join('');$('modelOutput').textContent=d.models.length?d.models.map(m=>`${m.active?'*':' '} ${m.name} | ${m.local?'local':'tags'} | ${m.size?Math.round(m.size/1024/1024)+' MB':'size unknown'}`).join('\n'):'No local models found.';$('chatInput').placeholder=`直接問 ${d.current}`}
-async function switchModel(){const model=$('modelSelect').value;if(!model)return toast('No model selected.');const d=await api('/api/model',{method:'POST',body:JSON.stringify({model})});toast(d.message||`Model switched to ${model}`);await Promise.allSettled([refreshStatus(),refreshModels(),refreshLog(),refreshProcesses()])}
-async function refreshConversations(){const d=await api('/api/conversations');$('conversationPath').textContent=d.path;$('conversationOutput').textContent=d.items.length?d.items.map(x=>`[${x.ts}] ${x.type} ${x.displayName||''}\nIN: ${x.input||''}\nMEM: ${(x.memoryItems||[]).map(m=>`${m.confidence}:${m.field}=${m.value}`).join('; ')||'-'}\nOUT: ${x.reply||''}\nERR: ${x.error||''}`).join('\n\n'):'目前沒有對話監視紀錄。';$('conversationOutput').scrollTop=$('conversationOutput').scrollHeight}
-async function clearConversations(){await api('/api/conversations/clear',{method:'POST'});toast('Conversation log cleared.');await refreshConversations()}
-async function refreshSelf(){const d=await api('/api/self');$('selfOutput').textContent=d.text}async function refreshLog(){const d=await api(`/api/log?name=${encodeURIComponent($('logSelect').value)}`);$('logOutput').textContent=d.text||'';$('logOutput').scrollTop=$('logOutput').scrollHeight}
-async function runAction(action){disable(true);try{const d=await api(`/api/${action}`,{method:'POST'});toast(d.message||'Done');await Promise.allSettled([refreshStatus(),refreshLog(),refreshProcesses()])}catch(e){toast(e.message)}finally{disable(false)}}
-async function sendChat(){const message=$('chatInput').value.trim();if(!message)return;$('chatInput').value='';$('chatHistory').textContent+=`\nYou: ${message}\n`;disable(true);try{const d=await api('/api/chat',{method:'POST',body:JSON.stringify({message,search:$('chatSearch').checked})});$('chatHistory').textContent+=`Qwen: ${d.answer}\n`;await refreshMemory()}catch(e){toast(e.message)}finally{disable(false)}}
-async function refreshMemory(){const d=await api('/api/memories');$('manualPath').textContent=d.manual.path;$('autoPath').textContent=d.auto.path;$('candidatePath').textContent=d.candidates.path;$('manualOutput').textContent=d.manual.text;$('usersJson').value=JSON.stringify(d.auto.users,null,2);$('candidateOutput').textContent=d.candidates.candidates.length?d.candidates.candidates.map(c=>`${c.id} | ${c.displayName} | ${c.kind}: ${c.value}\nsource: ${c.sourceText}`).join('\n\n'):'目前沒有候選記憶。'}
-async function addManual(){const text=$('manualInput').value.trim();if(!text)return toast('先輸入記憶內容。');const d=await api('/api/memory/manual-add',{method:'POST',body:JSON.stringify({text})});$('manualInput').value='';toast(d.message);await refreshMemory()}
-async function saveUsers(){const body=JSON.parse($('usersJson').value);await api('/api/memory/users',{method:'POST',body:JSON.stringify(body)});toast('Users memory saved.');await refreshMemory()}
-async function candidate(action){const id=$('candidateId').value.trim();if(action!=='clear'&&!id)return toast('先填 candidate id。');await api('/api/memory/candidates',{method:'POST',body:JSON.stringify({action,id})});toast(`candidate ${action} done`);await refreshMemory()}
-async function clearAuto(all){const userId=all?'':$('autoUserId').value.trim();if(!all&&!userId)return toast('先填 user id，或按 Clear All。');await api('/api/memory/auto-clear',{method:'POST',body:JSON.stringify({userId})});toast('Auto memory cleared.');await refreshMemory()}
-async function refreshTone(){const d=await api('/api/tone');$('toneSelect').value=String(d.level);$('toneOutput').textContent=`level ${d.level}: ${d.description}\n${d.path||''}`}
-async function saveTone(){const d=await api('/api/tone',{method:'POST',body:JSON.stringify({level:$('toneSelect').value})});toast('Tone saved.');$('toneOutput').textContent=`level ${d.level}: ${d.description}`}
-async function refreshCapabilities(){const d=await api('/api/capabilities');$('capabilitiesOutput').textContent=d.text}
-async function refreshProcesses(){const d=await api('/api/processes');$('processOutput').textContent=JSON.stringify(d.processes,null,2)}
-async function refreshContext(){const d=await api('/api/context');$('contextPath').textContent=d.path;$('contextOutput').textContent=JSON.stringify(d.context,null,2)}
-async function refreshReminders(){const d=await api('/api/reminders');$('reminderOutput').textContent=d.reminders.length?d.reminders.map(r=>`${r.id} | ${r.dueAt} | ${r.text} | done=${r.done} delivered=${r.delivered}`).join('\n'):'目前沒有提醒。'}
-async function addReminder(){await api('/api/reminders',{method:'POST',body:JSON.stringify({action:'add',text:$('reminderText').value,time:$('reminderTime').value})});$('reminderText').value='';$('reminderTime').value='';toast('Reminder added.');await refreshReminders()}
-async function doneReminder(){const id=$('reminderId').value.trim();if(!id)return toast('先填 reminder id。');await api('/api/reminders',{method:'POST',body:JSON.stringify({action:'done',id})});toast('Reminder done.');await refreshReminders()}
-async function clearReminders(){await api('/api/reminders',{method:'POST',body:JSON.stringify({action:'clear'})});toast('Reminders cleared.');await refreshReminders()}
-async function clearLogs(all){await api('/api/logs/clear',{method:'POST',body:JSON.stringify({name:all?'':$('logSelect').value})});toast('Logs cleared.');await refreshLog()}
-document.addEventListener('click',e=>{const a=e.target?.dataset?.action;if(!a)return;if(a==='send-chat')sendChat();else if(a==='refresh-models')refreshModels().catch(e=>toast(e.message));else if(a==='switch-model')switchModel().catch(e=>toast(e.message));else if(a==='refresh-log')refreshLog().catch(e=>toast(e.message));else if(a==='refresh-conversations')refreshConversations().catch(e=>toast(e.message));else if(a==='clear-conversations')clearConversations().catch(e=>toast(e.message));else if(a==='refresh-self')refreshSelf().catch(e=>toast(e.message));else if(a==='refresh-memory')refreshMemory().catch(e=>toast(e.message));else if(a==='add-manual-memory')addManual().catch(e=>toast(e.message));else if(a==='clear-manual-memory')api('/api/memory/manual-clear',{method:'POST'}).then(refreshMemory).catch(e=>toast(e.message));else if(a==='save-users')saveUsers().catch(e=>toast(e.message));else if(a==='clear-auto-user')clearAuto(false).catch(e=>toast(e.message));else if(a==='clear-auto-all')clearAuto(true).catch(e=>toast(e.message));else if(a==='approve-candidate')candidate('approve').catch(e=>toast(e.message));else if(a==='reject-candidate')candidate('reject').catch(e=>toast(e.message));else if(a==='clear-candidates')candidate('clear').catch(e=>toast(e.message));else if(a==='save-tone')saveTone().catch(e=>toast(e.message));else if(a==='refresh-capabilities')refreshCapabilities().catch(e=>toast(e.message));else if(a==='refresh-processes')refreshProcesses().catch(e=>toast(e.message));else if(a==='refresh-context')refreshContext().catch(e=>toast(e.message));else if(a==='refresh-reminders')refreshReminders().catch(e=>toast(e.message));else if(a==='add-reminder')addReminder().catch(e=>toast(e.message));else if(a==='done-reminder')doneReminder().catch(e=>toast(e.message));else if(a==='clear-reminders')clearReminders().catch(e=>toast(e.message));else if(a==='clear-log')clearLogs(false).catch(e=>toast(e.message));else if(a==='clear-all-logs')clearLogs(true).catch(e=>toast(e.message));else runAction(a)});
-$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))sendChat()});$('logSelect').addEventListener('change',()=>refreshLog().catch(e=>toast(e.message)));
-Promise.allSettled([refreshStatus(),refreshModels(),refreshLog(),refreshMemory(),refreshTone(),refreshCapabilities(),refreshProcesses(),refreshContext(),refreshReminders(),refreshConversations(),refreshSelf()]);setInterval(()=>refreshStatus().catch(()=>{}),5000);
+const els = { ollama: $("ollamaStatus"), bot: $("botStatus"), storage: $("storageStatus"), model: $("modelStatus"), guard: $("guardStatus") };
+function toast(msg) { const el = $("toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 3500); }
+function setStatus(el, state, text) { el.classList.remove("ok", "warn", "bad"); el.classList.add(state); el.lastElementChild.textContent = text; }
+function html(value) { return String(value ?? "missing").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch])); }
+async function api(path, options = {}) { const r = await fetch(path, { headers: { "Content-Type": "application/json" }, ...options }); const d = await r.json(); if (!r.ok || d.ok === false) throw new Error(d.error || `HTTP ${r.status}`); return d; }
+function disable(value) { document.querySelectorAll("button").forEach((button) => { button.disabled = value; }); }
+async function refreshStatus() {
+  const s = await api("/api/status");
+  setStatus(els.ollama, s.ollamaRunning ? "ok" : "warn", s.ollamaRunning ? "running" : "stopped");
+  setStatus(els.bot, s.botRunning ? "ok" : "warn", s.botRunning ? "running" : "stopped");
+  setStatus(els.storage, s.storageOk ? "ok" : "bad", s.storageOk ? "isolated" : "check failed");
+  setStatus(els.model, s.hasModel && !s.modelMismatch ? "ok" : "warn", s.modelMismatch ? `mismatch: ${s.model}` : s.model);
+  const rows = [
+    ["Project root", s.projectRoot],
+    ["Target model", s.model],
+    [".env model", s.envModel],
+    ["Bot process model", s.botModel || (s.botRunning ? "unknown" : "not running")],
+    ["Model mismatch", s.modelMismatch ? "yes" : "no"],
+    ["Tone", `${s.tone} ${s.toneDescription}`],
+    ["Token", s.token?.masked],
+    ["Process count", s.processCount],
+    ["Persona", s.personaPath],
+    ["Manual memory", s.memoryPath],
+    ["Auto memory", s.autoMemoryPath],
+    ["Candidates", s.candidatesPath],
+    ["Context", s.contextPath],
+    ["Reminders", s.remindersPath],
+    ["Performance", s.performancePath],
+    ["Runtime guard", s.runtimeGuardPath],
+    ["Autonomy", s.autonomyPath],
+    ["Character", s.characterPath],
+    ["Lore intensity", s.characterIntensity],
+    ["Self memory", s.selfMemoryPath],
+    ["Capabilities", s.capabilitiesPath],
+    [".env", s.hasEnv ? "present" : "missing"],
+    ["Model pulled", s.hasModel ? "yes" : "no"],
+  ];
+  $("envList").innerHTML = rows.map(([k, v]) => `<dt>${html(k)}</dt><dd>${html(v || "missing")}</dd>`).join("");
+  $("toneSelect").value = String(s.tone);
+}
+async function refreshModels() {
+  const d = await api("/api/models");
+  setStatus(els.model, d.models.some((m) => m.active) && !d.modelMismatch ? "ok" : "warn", d.modelMismatch ? `mismatch: ${d.current}` : d.current);
+  $("modelSelect").innerHTML = d.models.map((m) => `<option value="${html(m.name)}" ${m.active ? "selected" : ""}>${m.active ? "* " : ""}${html(m.name)}</option>`).join("");
+  const modelLines = d.models.length ? d.models.map((m) => `${m.active ? "*" : " "} ${m.name} | ${m.local ? "local" : "tags"} | ${m.size ? Math.round(m.size / 1024 / 1024) + " MB" : "size unknown"}`) : ["No local models found."];
+  $("modelOutput").textContent = [`current=${d.current}`, `env=${d.envModel || "-"}`, `bot=${d.botModel || "not running"}`, `mismatch=${d.modelMismatch ? "yes" : "no"}`, "", ...modelLines].join("\n");
+  $("chatInput").placeholder = `直接問 ${d.current}`;
+}
+async function switchModel() {
+  const model = $("modelSelect").value;
+  if (!model) return toast("No model selected.");
+  const d = await api("/api/model", { method: "POST", body: JSON.stringify({ model }) });
+  toast(d.message || `Model switched to ${model}`);
+  await Promise.allSettled([refreshStatus(), refreshModels(), refreshRuntimeGuard(), refreshLog(), refreshProcesses(), refreshPerformance()]);
+}
+function performanceLine(item) {
+  if (item.raw) return item.raw;
+  const o = item.options || {};
+  const vram = `${item.vramFreeBeforeMb ?? "-"} -> ${item.vramFreeAfterMb ?? "-"}`;
+  const error = item.error ? `\nERR: ${item.error}` : "";
+  return `[${item.ts || "-"}] ${item.type || "chat"} ${item.model || ""}\nctx=${o.num_ctx ?? "-"} pred=${o.num_predict ?? "-"} temp=${o.temperature ?? "-"} top_p=${o.top_p ?? "-"} repeat=${o.repeat_penalty ?? "-"}\nsec=${item.wallSeconds ?? "-"} tok/s=${item.outputTokensPerSecond ?? "-"} prompt_tok/s=${item.promptTokensPerSecond ?? "-"} out=${item.responseChars ?? "-"} vram=${vram} reason=${item.doneReason || "-"} fallback=${item.fallback || "-"}${error}`;
+}
+async function refreshPerformance() {
+  const d = await api("/api/performance?limit=80");
+  $("performancePath").textContent = d.path;
+  $("performanceOutput").textContent = d.items.length ? d.items.map(performanceLine).join("\n\n") : "目前沒有模型效能紀錄。";
+  $("performanceOutput").scrollTop = $("performanceOutput").scrollHeight;
+}
+async function clearPerformance() { await api("/api/performance/clear", { method: "POST" }); toast("Performance log cleared."); await refreshPerformance(); }
+function guardProcessLine(item) {
+  return `${item.name || "-"} pid=${item.pid || "-"} ws=${item.workingSetMb ?? "-"}MB start=${item.startTime || "-"}\n  ${item.path || "path unavailable"}`;
+}
+async function refreshRuntimeGuard() {
+  const d = await api("/api/runtime-guard");
+  const blocking = d.blockingRisks || [];
+  const risks = d.risks || [];
+  setStatus(els.guard, blocking.length ? "bad" : risks.length ? "warn" : "ok", blocking.length ? blocking.map((r) => r.code).join(", ") : risks.length ? risks.map((r) => r.code).join(", ") : "clean");
+  $("runtimeGuardPath").textContent = `log: ${d.guardLogPath || ""}`;
+  const gpu = d.gpu?.available ? `GPU free=${d.gpu.freeMb} MB used=${d.gpu.usedMb} MB util=${d.gpu.utilizationPct}% min=${d.minFreeVramMb} MB` : `GPU unavailable: ${d.gpu?.error || "-"}`;
+  const loaded = d.ollama?.models?.length ? d.ollama.models.map((m) => `${m.name} vram=${m.sizeVram || 0}`).join("\n") : "none";
+  const riskText = risks.length ? risks.map((r) => `${r.code} blocking=${r.blocking}: ${r.message}`).join("\n") : "none";
+  const processes = [
+    "project ollama.exe:",
+    ...(d.processes?.projectOllama || []).map(guardProcessLine),
+    "project llama-server.exe:",
+    ...(d.processes?.projectLlamaServers || []).map(guardProcessLine),
+    "project node.exe:",
+    ...(d.processes?.projectNode || []).map(guardProcessLine),
+  ];
+  $("runtimeGuardOutput").textContent = [
+    gpu,
+    `Ollama responds=${d.ollama?.responds ? "yes" : "no"} loadedModels=${d.ollama?.models?.length || 0}`,
+    "",
+    "Loaded models:",
+    loaded,
+    "",
+    "Risks:",
+    riskText,
+    "",
+    "Processes:",
+    processes.join("\n") || "none",
+  ].join("\n");
+}
+async function cleanRuntimeOrphans() {
+  const d = await api("/api/runtime-guard/clean-orphans", { method: "POST" });
+  toast(d.message || "Runtime guard cleanup finished.");
+  await Promise.allSettled([refreshRuntimeGuard(), refreshProcesses(), refreshStatus(), refreshPerformance()]);
+}
+async function restartRuntimeOllama() {
+  const d = await api("/api/runtime-guard/restart-ollama", { method: "POST" });
+  toast(d.message || "Ollama restarted.");
+  await Promise.allSettled([refreshRuntimeGuard(), refreshProcesses(), refreshStatus(), refreshLog(), refreshPerformance()]);
+}
+function autonomyPayload() {
+  return {
+    decisionMode: $("decisionMode").value,
+    searchMode: $("searchMode").value,
+    memoryMode: $("memoryMode").value,
+    searchDisclosure: $("searchDisclosure").value,
+    memoryFeedback: $("memoryFeedback").value,
+    searchConfidence: Number.parseFloat($("searchConfidence").value),
+    memorySaveConfidence: Number.parseFloat($("memorySaveConfidence").value),
+    memoryCandidateConfidence: Number.parseFloat($("memoryCandidateConfidence").value),
+  };
+}
+function renderAutonomy(settings) {
+  $("decisionMode").value = settings.decisionMode;
+  $("searchMode").value = settings.searchMode;
+  $("memoryMode").value = settings.memoryMode;
+  $("searchDisclosure").value = settings.searchDisclosure;
+  $("memoryFeedback").value = settings.memoryFeedback;
+  $("searchConfidence").value = settings.searchConfidence;
+  $("memorySaveConfidence").value = settings.memorySaveConfidence;
+  $("memoryCandidateConfidence").value = settings.memoryCandidateConfidence;
+  $("autonomyOutput").textContent = JSON.stringify(settings, null, 2);
+}
+async function refreshAutonomy() {
+  const d = await api("/api/autonomy");
+  $("autonomyPath").textContent = d.path;
+  renderAutonomy(d.settings);
+}
+async function saveAutonomy() {
+  const d = await api("/api/autonomy", { method: "POST", body: JSON.stringify(autonomyPayload()) });
+  $("autonomyPath").textContent = d.path;
+  renderAutonomy(d.settings);
+  toast("Autonomy saved.");
+}
+async function previewAutonomy() {
+  const message = $("autonomyPreviewInput").value.trim();
+  if (!message) return toast("先輸入 preview 訊息。");
+  const d = await api("/api/autonomy/preview", { method: "POST", body: JSON.stringify({ message }) });
+  $("autonomyOutput").textContent = JSON.stringify(d.decision, null, 2);
+}
+function renderCharacter(d) {
+  $("characterPath").textContent = d.path;
+  $("characterIntensity").value = String(d.data?.loreIntensity ?? 2);
+  $("characterOutput").textContent = d.text || "";
+  $("characterJson").value = JSON.stringify(d.data || {}, null, 2);
+}
+async function refreshCharacter() {
+  renderCharacter(await api("/api/character"));
+}
+async function saveCharacter() {
+  const profile = JSON.parse($("characterJson").value);
+  profile.loreIntensity = Number.parseInt($("characterIntensity").value, 10);
+  const d = await api("/api/character", { method: "POST", body: JSON.stringify({ profile }) });
+  renderCharacter(d);
+  toast(d.message || "Character saved.");
+}
+async function applyCharacterIntensity() {
+  const profile = JSON.parse($("characterJson").value);
+  profile.loreIntensity = Number.parseInt($("characterIntensity").value, 10);
+  $("characterJson").value = JSON.stringify(profile, null, 2);
+  await saveCharacter();
+}
+async function resetCharacter() {
+  const d = await api("/api/character/reset", { method: "POST" });
+  renderCharacter(d);
+  toast(d.message || "Character reset.");
+}
+async function refreshConversations() {
+  const d = await api("/api/conversations");
+  $("conversationPath").textContent = d.path;
+  $("conversationOutput").textContent = d.items.length ? d.items.map((x) => {
+    const decision = x.meta?.autonomyDecision || {};
+    const search = decision.search || {};
+    const memory = (x.memoryItems || []).map((m) => `${m.action || "-"}:${m.confidence}:${m.field}=${m.value}${m.reason ? ` (${m.reason})` : ""}`).join("; ") || "-";
+    const selfMemory = (x.meta?.selfMemoryItems || []).map((m) => `${m.action || "-"}:${m.section || "-"}=${m.value || ""}${m.confidence ? ` (${m.confidence})` : ""}`).join("; ") || "-";
+    return `[${x.ts}] ${x.type} ${x.displayName || ""}\nIN: ${x.input || ""}\nSEARCH: ${x.searched ? "yes" : "no"} ${x.meta?.searchQuery || search.query || ""}\nDECISION: ${search.action || "-"} ${search.triggerCategory || ""} ${search.confidence ?? ""} ${search.reason || ""}\nMEM: ${memory}\nSELF: ${selfMemory}\nOUT: ${x.reply || ""}\nERR: ${x.error || x.meta?.searchError || ""}`;
+  }).join("\n\n") : "目前沒有對話監視紀錄。";
+  $("conversationOutput").scrollTop = $("conversationOutput").scrollHeight;
+}
+async function clearConversations() { await api("/api/conversations/clear", { method: "POST" }); toast("Conversation log cleared."); await refreshConversations(); }
+async function refreshSelf() { const d = await api("/api/self"); $("selfOutput").textContent = d.text; }
+async function refreshLog() { const d = await api(`/api/log?name=${encodeURIComponent($("logSelect").value)}`); $("logOutput").textContent = d.text || ""; $("logOutput").scrollTop = $("logOutput").scrollHeight; }
+async function runAction(action) { disable(true); try { const d = await api(`/api/${action}`, { method: "POST" }); toast(d.message || "Done"); await Promise.allSettled([refreshStatus(), refreshRuntimeGuard(), refreshLog(), refreshProcesses(), refreshPerformance()]); } catch (e) { toast(e.message); } finally { disable(false); } }
+async function sendChat() {
+  const message = $("chatInput").value.trim();
+  if (!message) return;
+  $("chatInput").value = "";
+  $("chatHistory").textContent += `\nYou: ${message}\n`;
+  disable(true);
+  try {
+    const d = await api("/api/chat", { method: "POST", body: JSON.stringify({ message, search: $("chatSearch").checked }) });
+    $("chatHistory").textContent += `Qwen: ${d.answer}\n`;
+    await Promise.allSettled([refreshMemory(), refreshSelfMemory(), refreshConversations(), refreshRuntimeGuard(), refreshPerformance()]);
+  } catch (e) {
+    toast(e.message);
+  } finally {
+    disable(false);
+  }
+}
+async function refreshMemory() {
+  const d = await api("/api/memories");
+  $("personaPath").textContent = d.persona?.path || "";
+  $("personaInput").value = d.persona?.text || "";
+  $("manualPath").textContent = d.manual.path;
+  $("autoPath").textContent = d.auto.path;
+  $("candidatePath").textContent = d.candidates.path;
+  $("manualOutput").textContent = d.manual.text;
+  $("usersJson").value = JSON.stringify(d.auto.users, null, 2);
+  $("candidateOutput").textContent = d.candidates.candidates.length ? d.candidates.candidates.map((c) => `${c.id} | ${c.displayName} | ${c.kind}: ${c.value}\nsource: ${c.sourceText}`).join("\n\n") : "目前沒有候選記憶。";
+}
+async function refreshSelfMemory() {
+  const d = await api("/api/self-memory");
+  $("selfMemoryPath").textContent = d.path;
+  $("selfMemoryOutput").textContent = `${d.text}\n\n${JSON.stringify(d.data, null, 2)}`;
+}
+async function clearSelfMemory(section = "") {
+  await api("/api/self-memory/clear", { method: "POST", body: JSON.stringify({ section }) });
+  toast(section ? `Self memory ${section} cleared.` : "Self memory cleared.");
+  await refreshSelfMemory();
+}
+async function savePersona() {
+  const text = $("personaInput").value.trim();
+  if (!text) return toast("Persona 不能是空的。");
+  const d = await api("/api/persona", { method: "POST", body: JSON.stringify({ text }) });
+  toast(d.message || "Persona saved.");
+  await refreshMemory();
+}
+async function addManual() { const text = $("manualInput").value.trim(); if (!text) return toast("先輸入記憶內容。"); const d = await api("/api/memory/manual-add", { method: "POST", body: JSON.stringify({ text }) }); $("manualInput").value = ""; toast(d.message); await refreshMemory(); }
+async function saveUsers() { const body = JSON.parse($("usersJson").value); await api("/api/memory/users", { method: "POST", body: JSON.stringify(body) }); toast("Users memory saved."); await refreshMemory(); }
+async function candidate(action) { const id = $("candidateId").value.trim(); if (action !== "clear" && !id) return toast("先填 candidate id。"); await api("/api/memory/candidates", { method: "POST", body: JSON.stringify({ action, id }) }); toast(`candidate ${action} done`); await refreshMemory(); }
+async function clearAuto(all) { const userId = all ? "" : $("autoUserId").value.trim(); if (!all && !userId) return toast("先填 user id，或按 Clear All。"); await api("/api/memory/auto-clear", { method: "POST", body: JSON.stringify({ userId }) }); toast("Auto memory cleared."); await refreshMemory(); }
+async function refreshTone() { const d = await api("/api/tone"); $("toneSelect").value = String(d.level); $("toneOutput").textContent = `level ${d.level}: ${d.description}\n${d.path || ""}`; }
+async function saveTone() { const d = await api("/api/tone", { method: "POST", body: JSON.stringify({ level: $("toneSelect").value }) }); toast("Tone saved."); $("toneOutput").textContent = `level ${d.level}: ${d.description}`; }
+async function refreshCapabilities() { const d = await api("/api/capabilities"); $("capabilitiesOutput").textContent = d.text; }
+async function refreshProcesses() { const d = await api("/api/processes"); $("processOutput").textContent = JSON.stringify(d.processes, null, 2); }
+async function refreshContext() { const d = await api("/api/context"); $("contextPath").textContent = d.path; $("contextOutput").textContent = JSON.stringify(d.context, null, 2); }
+async function refreshReminders() { const d = await api("/api/reminders"); $("reminderOutput").textContent = d.reminders.length ? d.reminders.map((r) => `${r.id} | ${r.dueAt} | ${r.text} | done=${r.done} delivered=${r.delivered}`).join("\n") : "目前沒有提醒。"; }
+async function addReminder() { await api("/api/reminders", { method: "POST", body: JSON.stringify({ action: "add", text: $("reminderText").value, time: $("reminderTime").value }) }); $("reminderText").value = ""; $("reminderTime").value = ""; toast("Reminder added."); await refreshReminders(); }
+async function doneReminder() { const id = $("reminderId").value.trim(); if (!id) return toast("先填 reminder id。"); await api("/api/reminders", { method: "POST", body: JSON.stringify({ action: "done", id }) }); toast("Reminder done."); await refreshReminders(); }
+async function clearReminders() { await api("/api/reminders", { method: "POST", body: JSON.stringify({ action: "clear" }) }); toast("Reminders cleared."); await refreshReminders(); }
+async function clearLogs(all) { await api("/api/logs/clear", { method: "POST", body: JSON.stringify({ name: all ? "" : $("logSelect").value }) }); toast("Logs cleared."); await refreshLog(); }
+document.addEventListener("click", (e) => {
+  const a = e.target?.dataset?.action;
+  if (!a) return;
+  if (a === "send-chat") sendChat();
+  else if (a === "refresh-models") refreshModels().catch((e) => toast(e.message));
+  else if (a === "switch-model") switchModel().catch((e) => toast(e.message));
+  else if (a === "refresh-performance") refreshPerformance().catch((e) => toast(e.message));
+  else if (a === "clear-performance") clearPerformance().catch((e) => toast(e.message));
+  else if (a === "refresh-runtime-guard") refreshRuntimeGuard().catch((e) => toast(e.message));
+  else if (a === "clean-runtime-orphans") cleanRuntimeOrphans().catch((e) => toast(e.message));
+  else if (a === "restart-runtime-ollama") restartRuntimeOllama().catch((e) => toast(e.message));
+  else if (a === "refresh-autonomy") refreshAutonomy().catch((e) => toast(e.message));
+  else if (a === "save-autonomy") saveAutonomy().catch((e) => toast(e.message));
+  else if (a === "preview-autonomy") previewAutonomy().catch((e) => toast(e.message));
+  else if (a === "refresh-character") refreshCharacter().catch((e) => toast(e.message));
+  else if (a === "save-character") saveCharacter().catch((e) => toast(e.message));
+  else if (a === "apply-character-intensity") applyCharacterIntensity().catch((e) => toast(e.message));
+  else if (a === "reset-character") resetCharacter().catch((e) => toast(e.message));
+  else if (a === "refresh-log") refreshLog().catch((e) => toast(e.message));
+  else if (a === "refresh-conversations") refreshConversations().catch((e) => toast(e.message));
+  else if (a === "clear-conversations") clearConversations().catch((e) => toast(e.message));
+  else if (a === "refresh-self") refreshSelf().catch((e) => toast(e.message));
+  else if (a === "refresh-self-memory") refreshSelfMemory().catch((e) => toast(e.message));
+  else if (a === "clear-self-memory") clearSelfMemory("").catch((e) => toast(e.message));
+  else if (a === "clear-self-principles") clearSelfMemory("principles").catch((e) => toast(e.message));
+  else if (a === "clear-self-voice") clearSelfMemory("voice").catch((e) => toast(e.message));
+  else if (a === "clear-self-avoid") clearSelfMemory("avoid").catch((e) => toast(e.message));
+  else if (a === "refresh-memory") refreshMemory().catch((e) => toast(e.message));
+  else if (a === "save-persona") savePersona().catch((e) => toast(e.message));
+  else if (a === "add-manual-memory") addManual().catch((e) => toast(e.message));
+  else if (a === "clear-manual-memory") api("/api/memory/manual-clear", { method: "POST" }).then(refreshMemory).catch((e) => toast(e.message));
+  else if (a === "save-users") saveUsers().catch((e) => toast(e.message));
+  else if (a === "clear-auto-user") clearAuto(false).catch((e) => toast(e.message));
+  else if (a === "clear-auto-all") clearAuto(true).catch((e) => toast(e.message));
+  else if (a === "approve-candidate") candidate("approve").catch((e) => toast(e.message));
+  else if (a === "reject-candidate") candidate("reject").catch((e) => toast(e.message));
+  else if (a === "clear-candidates") candidate("clear").catch((e) => toast(e.message));
+  else if (a === "save-tone") saveTone().catch((e) => toast(e.message));
+  else if (a === "refresh-capabilities") refreshCapabilities().catch((e) => toast(e.message));
+  else if (a === "refresh-processes") refreshProcesses().catch((e) => toast(e.message));
+  else if (a === "refresh-context") refreshContext().catch((e) => toast(e.message));
+  else if (a === "refresh-reminders") refreshReminders().catch((e) => toast(e.message));
+  else if (a === "add-reminder") addReminder().catch((e) => toast(e.message));
+  else if (a === "done-reminder") doneReminder().catch((e) => toast(e.message));
+  else if (a === "clear-reminders") clearReminders().catch((e) => toast(e.message));
+  else if (a === "clear-log") clearLogs(false).catch((e) => toast(e.message));
+  else if (a === "clear-all-logs") clearLogs(true).catch((e) => toast(e.message));
+  else runAction(a);
+});
+$("chatInput").addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) sendChat(); });
+$("logSelect").addEventListener("change", () => refreshLog().catch((e) => toast(e.message)));
+Promise.allSettled([refreshStatus(), refreshModels(), refreshRuntimeGuard(), refreshPerformance(), refreshAutonomy(), refreshCharacter(), refreshLog(), refreshMemory(), refreshSelfMemory(), refreshTone(), refreshCapabilities(), refreshProcesses(), refreshContext(), refreshReminders(), refreshConversations(), refreshSelf()]);
+setInterval(() => refreshStatus().catch(() => {}), 5000);
+setInterval(() => refreshRuntimeGuard().catch(() => {}), 10000);
 </script>
 </body>
 </html>

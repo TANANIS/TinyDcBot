@@ -10,6 +10,7 @@
                     "dashboard":  "node src/dashboardServer.js",
                     "check:storage":  "powershell -ExecutionPolicy Bypass -File scripts/check-storage.ps1",
                     "doctor":  "powershell -ExecutionPolicy Bypass -File scripts/doctor.ps1",
+                    "runtime:guard":  "powershell -ExecutionPolicy Bypass -File scripts/runtime-guard.ps1",
                     "env:init":  "powershell -ExecutionPolicy Bypass -File scripts/init-env.ps1",
                     "deps:install":  "powershell -ExecutionPolicy Bypass -File scripts/install-deps.ps1",
                     "bot:run":  "powershell -ExecutionPolicy Bypass -File scripts/run-bot.ps1",

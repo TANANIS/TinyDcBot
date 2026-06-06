@@ -6,29 +6,57 @@ $ErrorActionPreference = "Stop"
 
 $ProjectRoot = "D:\TinyDcBot"
 $DashboardUrl = "http://127.0.0.1:8787"
+$OllamaRoot = Join-Path $ProjectRoot "runtime\ollama"
+$NodeRoot = Join-Path $ProjectRoot "runtime\node"
 $Stopped = New-Object System.Collections.Generic.List[string]
 $Skipped = New-Object System.Collections.Generic.List[string]
 
-function Stop-ProjectProcess {
+function Test-InsidePath {
     param(
-        [Parameter(Mandatory = $true)] [string] $Name,
-        [Parameter(Mandatory = $true)] [scriptblock] $Match
+        [string] $Value,
+        [string] $Root
     )
 
-    $processes = Get-CimInstance Win32_Process | Where-Object { & $Match $_ }
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return $false
+    }
+
+    try {
+        $Resolved = [System.IO.Path]::GetFullPath($Value)
+        $ResolvedRoot = [System.IO.Path]::GetFullPath($Root).TrimEnd("\")
+        return $Resolved.Equals($ResolvedRoot, [System.StringComparison]::OrdinalIgnoreCase) -or
+            $Resolved.StartsWith("$ResolvedRoot\", [System.StringComparison]::OrdinalIgnoreCase)
+    }
+    catch {
+        return $false
+    }
+}
+
+function Stop-ProjectProcess {
+    param(
+        [Parameter(Mandatory = $true)] [string] $Label,
+        [Parameter(Mandatory = $true)] [string[]] $ProcessNames,
+        [Parameter(Mandatory = $true)] [string] $Root
+    )
+
+    $processes = Get-Process -Name $ProcessNames -ErrorAction SilentlyContinue | Where-Object {
+        $Path = $null
+        try { $Path = $_.Path } catch {}
+        Test-InsidePath $Path $Root
+    }
 
     foreach ($process in $processes) {
         try {
             if ($DryRun) {
-                $Stopped.Add("would stop $Name pid=$($process.ProcessId)") | Out-Null
+                $Stopped.Add("would stop $Label pid=$($process.Id)") | Out-Null
             }
             else {
-                Stop-Process -Id $process.ProcessId -Force -ErrorAction Stop
-                $Stopped.Add("$Name pid=$($process.ProcessId)") | Out-Null
+                Stop-Process -Id $process.Id -Force -ErrorAction Stop
+                $Stopped.Add("$Label pid=$($process.Id)") | Out-Null
             }
         }
         catch {
-            $Skipped.Add("$Name pid=$($process.ProcessId): $($_.Exception.Message)") | Out-Null
+            $Skipped.Add("$Label pid=$($process.Id): $($_.Exception.Message)") | Out-Null
         }
     }
 }
@@ -58,19 +86,8 @@ else {
     Start-Sleep -Milliseconds 500
 }
 
-Stop-ProjectProcess -Name "TinyDcBot Node" -Match {
-    param($Process)
-    $Process.Name -ieq "node.exe" -and $Process.CommandLine -like "*D:\TinyDcBot*"
-}
-
-Stop-ProjectProcess -Name "TinyDcBot Ollama" -Match {
-    param($Process)
-    ($Process.Name -ieq "ollama.exe") -and (
-        $Process.ExecutablePath -like "D:\TinyDcBot\runtime\ollama\*" -or
-        $Process.CommandLine -like "*D:\TinyDcBot\runtime\ollama*" -or
-        $Process.CommandLine -like "*D:\TinyDcBot\runtime\ollama\models*"
-    )
-}
+Stop-ProjectProcess -Label "TinyDcBot Node" -ProcessNames @("node") -Root $NodeRoot
+Stop-ProjectProcess -Label "TinyDcBot Ollama" -ProcessNames @("ollama", "llama-server") -Root $OllamaRoot
 
 Write-Host ""
 if ($Stopped.Count -eq 0) {

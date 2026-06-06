@@ -55,6 +55,9 @@ if ($Npm) {
 }
 
 Write-Host ""
+& (Join-Path $PSScriptRoot "runtime-guard.ps1") -Action status
+
+Write-Host ""
 Write-Host "Next order:"
 if (Test-Path (Join-Path $ProjectRoot ".env")) {
     Write-Host "1. .env is present."

@@ -25,6 +25,11 @@ if (-not $Ollama) {
     throw "Could not find ollama.exe at D:\TinyDcBot\runtime\ollama\bin\ollama.exe. Project-local Ollama is required unless TINYDCBOT_ALLOW_PATH_RUNTIME=true is set intentionally."
 }
 
+& (Join-Path $PSScriptRoot "runtime-guard.ps1") -Action pull-model -FailOnRisk
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
+
 Write-Host "OLLAMA_MODELS=$env:OLLAMA_MODELS"
 Write-Host "Pulling model: $Model"
 & $Ollama pull $Model
